@@ -85,7 +85,8 @@ app.get('/streamchannel/:id', function(req, res) {
 app.post('/postmessage', function(req,res){
 
   var channelUrl = '/services/data/v36.0/sobjects/StreamingChannel/'+ req.body.postchannel + '/push';
-  var postBody = '{"pushEvents":[{"payload":' + req.body.postmessage + '}]}';
+  var postBody = '{"pushEvents":[{"payload":"' + req.body.postmessage + '"}]}';
+  console.log(postBody);
 
   var opts = org._getOpts({url:channelUrl,requestOpts:{method:'POST', body:postBody}}, function(err, resp){
     if (err){
