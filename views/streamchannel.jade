@@ -6,9 +6,7 @@ block content
   - var skipFields = ['attributes','isdeleted','setexternalid'];
   h1= title
     span #{data[1].get('Name')}
-  p Please post a message here to the Bilbao dev group Spring 16 release meetup.
-    This form posts to a generic streaming API channel. The message will be viewed
-    at the meetup tonight. Thanks!
+  p Please post a message here to the Bilbao dev group Spring 16 release meetup. This form posts to a generic streaming API channel. The message will be viewed at the meetup tonight. Thanks!
   form#formPostMessage(method="post",action="/postmessage")
     div.panel.panel-default
       div
@@ -19,6 +17,9 @@ block content
 
   p For more about durable streaming, be sure to check out the Spring 16&nbsp;
     a(href="https://releasenotes.docs.salesforce.com/en-us/spring16/release-notes/rn_api_streaming.htm") release notes.
+  p You can also watch the product team at&nbsp;
+    a(href="http://salesforce.vidyard.com/watch/AR1zoCe8LIVTAcr29qIGmA") Dreamforce 15
+    span &nbsp;talking about it.
   //ul
     //each val, key in data[1]._fields
       //- if (skipFields.indexOf(key) == -1)

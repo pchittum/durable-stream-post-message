@@ -2,10 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Demo for posting events to Streaming Channels
+  p Demo for posting events to Durable Generic Streaming API Channels
+  p Durable means that messages sent to the channel can be replayed for up to 24 hours. Each message has a sequential playback ID, so you can pick up from any point. If you want to have a go, click below. 
   ul
     li: a(href='/streamchannels') View Available Streaming Channels
   p
   p Many thanks to @jeffdonthemic for his sample&nbsp;
     a(href="https://www.github.com/jeffdonthemic/node-nforce-demo") nforce project&nbsp;
-    to hack apart for this demo
+    which I hacked to pieces for this demo.
