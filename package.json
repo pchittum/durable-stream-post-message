@@ -16,7 +16,7 @@
     "serve-favicon": "~2.1.3",
     "debug": "~2.0.0",
     "jade": "~1.6.0",
-    "nforce": "0.10.0",
+    "nforce": "1.4.0",
     "async": "*"
   }
 }
