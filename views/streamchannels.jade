@@ -1,0 +1,9 @@
+extends layout
+
+block content
+
+  h1= title
+  p Available Streaming Channels
+  ul
+    each item in data
+      li: a(href='/streamchannel/#{item.getId()}') #{item.get('Description')}

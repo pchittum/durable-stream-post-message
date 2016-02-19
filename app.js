@@ -15,7 +15,8 @@ var org = nforce.createConnection({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   redirectUri: 'http://localhost:' + app.get('port') + '/oauth/_callback',
-  mode: 'single'
+  mode: 'single',
+  apiVersion: 'v36.0'
 });
 
 // authenticate using username-password oauth flow
@@ -42,8 +43,42 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Durable Streaming Demo' });
 });
+
+// display a list of 10 accounts
+app.get('/streamchannels', function(req, res) {
+  var q = 'select id, name, description from StreamingChannel ORDER BY CreatedDate DESC LIMIT 10 ';
+  org.query({ query: q }, function(err, resp){
+    res.render("streamchannels", { title: 'Channels', data: resp.records } );
+  });
+});
+
+app.get('/streamchannel/:id', function(req, res) {
+  var async = require('async');
+  var obj = nforce.createSObject('StreamingChannel', {id: req.params.id});
+
+  async.parallel([
+      function(callback){
+        var q = "select count() from contact where accountid = '" + req.params.id + "'";
+        org.query({query: q}, function(err, resp){
+          callback(null, resp);
+        });
+      },
+      function(callback){
+        org.getRecord({sobject: obj}, function(err, resp) {
+          callback(null, resp);
+        });
+      },
+  ],
+  // optional callback
+  function(err, results){
+    // returns the responses in an array
+    res.render('streamchannel', { title: 'Stream Channel', data: results });
+  });
+
+});
+
 
 // display a list of 10 accounts
 app.get('/accounts', function(req, res) {
@@ -99,6 +134,32 @@ app.get('/accounts/:id', function(req, res) {
     // returns the responses in an array
     res.render('show', { title: 'Account Details', data: results });
   });
+
+});
+
+app.post('/postmessage', function(req,res){
+  console.log('got to postmessage call');
+  var channelUrl = '/services/data/v36.0/sobjects/StreamingChannel/'+ req.body.postchannel + '/push';
+  var postBody = {"pushEvents":[{"payload":req.body.postmessage}]};
+
+  var opts = org._getOpts({url:channelUrl,requestOpts:{method:'POST', body:postBody}}, function(err, resp){
+    if (err){
+      console.log('got an error');
+      console.log(err);
+    } else {
+      console.log('got a response');
+      console.log(resp);
+      res.redirect('/streamchannels/');
+      res.end();
+    }
+  }, {singleProp : 'url'});
+
+  opts.uri = opts.oauth.instance_url + channelUrl;
+  opts.method = 'POST';
+  opts.body = JSON.stringify(postBody);
+  console.log(opts.body);
+
+  org._apiRequest(opts, opts.callback);
 
 });
 

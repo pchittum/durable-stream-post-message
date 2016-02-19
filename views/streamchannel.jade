@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  // fields NOT to be displayed
+  - var skipFields = ['attributes','isdeleted','setexternalid'];
+  h1= title
+  form#formPostMessage(method="post",action="/postmessage")
+    div.panel.panel-default
+      div
+        input#inputNoteMessage.form-control(type="text", placeholder="Message to Post", name="postmessage")
+      div
+        input#inputNoteChannel.form-control(type="hidden", name="postchannel" value="#{data[1].getId()}")
+    button#btnSubmit.btn.btn-default(type="submit") Post Message
+
+  ul
+    each val, key in data[1]._fields
+      - if (skipFields.indexOf(key) == -1)
+        li #{key}: #{val}
