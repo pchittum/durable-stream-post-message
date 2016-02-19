@@ -82,6 +82,33 @@ app.get('/streamchannel/:id', function(req, res) {
 
 });
 
+app.post('/postmessage', function(req,res){
+
+  var channelUrl = '/services/data/v36.0/sobjects/StreamingChannel/'+ req.body.postchannel + '/push';
+  var postBody = '{"pushEvents":[{"payload":' + req.body.postmessage + '}]}';
+
+  var opts = org._getOpts({url:channelUrl,requestOpts:{method:'POST', body:postBody}}, function(err, resp){
+    if (err){
+      console.log('got an error');
+      console.log(err);
+    } else {
+      console.log('got a response');
+      console.log(resp);
+      res.redirect('/streamchannels/');
+      res.end();
+    }
+  }, {singleProp : 'url'});
+
+  opts.uri = opts.oauth.instance_url + channelUrl;
+  opts.method = 'POST';
+  opts.body = JSON.stringify(postBody);
+  console.log(opts.body);
+
+  org._apiRequest(opts, opts.callback);
+
+});
+
+
 
 // display a list of 10 accounts
 app.get('/accounts', function(req, res) {
@@ -137,32 +164,6 @@ app.get('/accounts/:id', function(req, res) {
     // returns the responses in an array
     res.render('show', { title: 'Account Details', data: results });
   });
-
-});
-
-app.post('/postmessage', function(req,res){
-  console.log('got to postmessage call');
-  var channelUrl = '/services/data/v36.0/sobjects/StreamingChannel/'+ req.body.postchannel + '/push';
-  var postBody = {"pushEvents":[{"payload":req.body.postmessage}]};
-
-  var opts = org._getOpts({url:channelUrl,requestOpts:{method:'POST', body:postBody}}, function(err, resp){
-    if (err){
-      console.log('got an error');
-      console.log(err);
-    } else {
-      console.log('got a response');
-      console.log(resp);
-      res.redirect('/streamchannels/');
-      res.end();
-    }
-  }, {singleProp : 'url'});
-
-  opts.uri = opts.oauth.instance_url + channelUrl;
-  opts.method = 'POST';
-  opts.body = JSON.stringify(postBody);
-  console.log(opts.body);
-
-  org._apiRequest(opts, opts.callback);
 
 });
 
