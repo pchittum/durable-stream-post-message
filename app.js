@@ -16,8 +16,11 @@ var org = nforce.createConnection({
   clientSecret: process.env.CLIENT_SECRET,
   redirectUri: 'http://localhost:' + app.get('port') + '/oauth/_callback',
   mode: 'single',
-  apiVersion: 'v35.0'
+  apiVersion: 'v32.0'
 });
+
+nforce.API_VERSIONS.push('v36.0');
+org.apiVersion = 'v36.0';
 
 // authenticate using username-password oauth flow
 org.authenticate({ username: process.env.USERNAME, password: process.env.PASSWORD }, function(err, resp){
