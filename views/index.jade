@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  h1= title
+  header.bar.bar-nav
+    h1.title= title
   p Demo for posting events to Durable Generic Streaming API Channels
-  p Durable means that messages sent to the channel can be replayed for up to 24 hours. Each message has a sequential playback ID, so you can pick up from any point. If you want to have a go, click below. 
+  p Durable means that messages sent to the channel can be replayed for up to 24 hours. Each message has a sequential playback ID, so you can pick up from any point. If you want to have a go, click below.
   ul
     li: a(href='/streamchannels') View Available Streaming Channels
   p
