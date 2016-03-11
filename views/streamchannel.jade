@@ -14,7 +14,6 @@ block content
           li.table-view-cell
             input#inputNoteMessage.form-control(type="text", placeholder="Message to Post", name="postmessage")
             input#inputNoteChannel.form-control(type="hidden", name="postchannel" value="#{data[1].getId()}")
-          li.table-view-cell
             button#btnSubmit.btn.btn-positive.btn-block(type="submit") Post Message
     p Please post a message here to Salesforce Trailhead@CeBIT Integration Demo and say 'halo!'
     p This form posts to a generic streaming API channel. The message will be viewed the next time we give the integration talk. Thanks!
