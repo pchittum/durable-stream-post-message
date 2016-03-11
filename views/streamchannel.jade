@@ -4,23 +4,16 @@ block content
 
   // fields NOT to be displayed
   - var skipFields = ['attributes','isdeleted','setexternalid'];
-  h1= title
-    span #{data[1].get('Name')}
-  p Please post a message here to the Bilbao dev group Spring 16 release meetup. This form posts to a generic streaming API channel. The message will be viewed at the meetup tonight. Thanks!
+  header.bar.bar-nav
+    h1= title
+      span #{data[1].get('Name')}
   form#formPostMessage(method="post",action="/postmessage")
-    div.panel.panel-default
+    div.card
       div
         input#inputNoteMessage.form-control(type="text", placeholder="Message to Post", name="postmessage")
       div
         input#inputNoteChannel.form-control(type="hidden", name="postchannel" value="#{data[1].getId()}")
-    button#btnSubmit.btn.btn-default(type="submit") Post Message
-
-  p For more about durable streaming, be sure to check out the Spring 16&nbsp;
-    a(href="https://releasenotes.docs.salesforce.com/en-us/spring16/release-notes/rn_api_streaming.htm") release notes.
-  p You can also watch the product team at&nbsp;
-    a(href="http://salesforce.vidyard.com/watch/AR1zoCe8LIVTAcr29qIGmA") Dreamforce 15
-    span &nbsp;talking about it.
-  //ul
-    //each val, key in data[1]._fields
-      //- if (skipFields.indexOf(key) == -1)
-        //li #{key}: #{val}
+    button#btnSubmit.btn.btn-positive.btn-block(type="submit") Post Message
+  p Please post a message here to the Bilbao dev group Spring 16 release meetup. This form posts to a generic streaming API channel. The message will be viewed at the meetup tonight. Thanks!
+  p For more about durable streaming, be sure to check out the Spring 16 #[a(href="https://releasenotes.docs.salesforce.com/en-us/spring16/release-notes/rn_api_streaming.htm") release notes].
+  p You can also watch the product team at #[a(href="http://salesforce.vidyard.com/watch/AR1zoCe8LIVTAcr29qIGmA") Dreamforce 15] talking about it.
