@@ -1,9 +1,10 @@
 extends layout
 
 block content
-
-  h1= title
+  header.bar.bar-nav
+    h1.title= title
   p Available Streaming Channels
-  ul
+  ul.table-view
+    li.table-view-divider Available Streaming Channels
     each item in data
-      li: a(href='/streamchannel/#{item.getId()}') #{item.get('Description')}
+      li.table-view-cell: a(href='/streamchannel/#{item.getId()}') #{item.get('Description')}
