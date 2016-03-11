@@ -14,7 +14,8 @@ block content
           li.table-view-cell
             input#inputNoteMessage.form-control(type="text", placeholder="Message to Post", name="postmessage")
             input#inputNoteChannel.form-control(type="hidden", name="postchannel" value="#{data[1].getId()}")
-            button#btnSubmit.btn.btn-positive.btn-block(type="submit") Post Message
+          li Send Message to #{data[1].get('Name')}
+      button#btnSubmit.btn.btn-primary(type="submit") Post Message
     p Please post a message here to Salesforce Trailhead@CeBIT Integration Demo and say 'halo!'
     p This form posts to a generic streaming API channel. The message will be viewed the next time we give the integration talk. Thanks!
     p For more about durable streaming, be sure to check out the Spring 16 #[a(href="https://releasenotes.docs.salesforce.com/en-us/spring16/release-notes/rn_api_streaming.htm") release notes].
