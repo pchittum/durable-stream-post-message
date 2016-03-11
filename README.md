@@ -1,23 +1,28 @@
-# node-nforce-demo
+# Post to Generic Streaming Channel Demo
 
-Simple node.js application for CRUDing salesforce.com Accounts using nforce.
+Basic node.js app to post to a Salesforce generic streaming channel using Express, nForce, and Jade templating library.
+
+This works with the Generic Streaming API [demo component](https://github.com/developerforce/SalesforceDurableGenericDemo) you can install in your Salesforce org.
+
+For more information on the Streaming API, generic streaming events, and the new durable streaming features I recommend reading the [doc](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/) on Salesforce Streaming API and watching the Dreamforce 15 [video](http://salesforce.vidyard.com/watch/AR1zoCe8LIVTAcr29qIGmA) given by the product team leads Product Manager [Jay Hurst](https://twitter.com/extraidea) and lead developer [John Brock](https://twitter.com/_johnbrock).
+
+Horribly hacked into place from Jeff Douglas' nForce demo app.
 
 ## Deploy to Heroku
 
 Deploy this app to Heroku for free and have it up and running in a matter of minutes.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/jeffdonthemic/node-nforce-demo)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/pchittum/durable-stream-post-message)
 
 ## Local Installation Instructions
 
 From the command line type in:
 
 ```
-git clone git@github.com:jeffdonthemic/node-nforce-demo.git
-cd nforce-node-demo
+git clone git@github.com:pchittum/durable-stream-post-message
+cd durable-stream-post-message
 npm install
 ```
-
 
 ### Node Module Dependencies
 
@@ -47,7 +52,10 @@ heroku open
 
 ### Demo on Heroku
 
-This application is running on heroku at: [http://node-nforce-demo.herokuapp.com/](http://node-nforce-demo.herokuapp.com/)
+This application is running on heroku at: [http://durable-stream.herokuapp.com/](http://durable-stream.herokuapp.com/)
 
 ## Contributors
-* Jeff Douglas -> [jeffdonthemic](https://github.com/jeffdonthemic)
+* Peter Chittum -> [pchittum](https://github.com/pchittum)
+
+## Credits
+* Jeff Douglas (original project) -> [jeffdonthemic](https://github.com/jeffdonthemic)
