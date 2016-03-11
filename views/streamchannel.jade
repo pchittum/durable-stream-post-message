@@ -4,10 +4,10 @@ block content
 
   // fields NOT to be displayed
   - var skipFields = ['attributes','isdeleted','setexternalid'];
+  header.bar.bar-nav
+    h1= title
+      //span #{data[1].get('Name')}
   div.content
-    header.bar.bar-nav
-      h1= title
-        //span #{data[1].get('Name')}
     form#formPostMessage(method="post",action="/postmessage")
       div.card
         ul.tableview
